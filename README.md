@@ -60,8 +60,9 @@ Registration validation
 Web security  
 Mailing  
 Micro-Framework  
-Template engines  
 Server side rendering  
+Template engines  
+MVC Structure (Model View Controller)  
 NOSQL Database  
 Cloud Database  
 Asynchronous requests  
