@@ -5,11 +5,11 @@ This project aims to create a small Instagram-like site allowing users to create
 
 ## Expected Result
 
-## Technical Stack
-
 ## Docker
 This project use Docker for containerisation.  
 Docker need to be installed on your system: https://www.docker.com/  
+
+## Technical Stack
 
 ## Start
 Start the Backend container.
