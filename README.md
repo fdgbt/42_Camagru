@@ -50,7 +50,7 @@ More screenshots are availables in the "screens" folder.
 ## Notes
 You need to create the "env" variables to start the container.  See an example below:  
 
-The database is hosted on cloud (Mongo Atlas) and its access is protected by IP. Contact me to add your IP to the whitelist.  
+The database is hosted on the cloud (Mongo Atlas) and its access is protected by IP. Contact me to add your IP to the whitelist.  
 
 ## Keywords
 User management  
