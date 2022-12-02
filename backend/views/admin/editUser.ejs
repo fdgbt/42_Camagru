@@ -1,0 +1,121 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <%- include('../includes/main.ejs') %>
+
+        <div class="max-h-screen/mhf sm:max-h-screen/hf h-screen/mhf sm:h-screen/hf overflow-y-scroll overflow-x-hidden flex flex-col items-center justify-center">
+            
+            <div id="error" class="hidden work-sans text-xl text-center text-red-600 cursor-default whitespace-pre-line" ></div>
+            <div class="relative border border-double dark:border-slate-700 w-full sm:w-96 rounded-3xl m-4">
+                <div class="relative border border-double dark:border-slate-700 w-auto rounded-2xl m-2">
+
+                    <div class="absolute top-3 right-3 border dark:border-slate-700 w-10 h-10 rounded-full"></div>
+
+                    <form id="updateUser" action="#" method="POST" onsubmit="updateUser('<%= user._id %>'); return false" class="flex flex-col items-center gap-8 p-8">
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-center items-center w-full sm:w-auto">
+                            <label for="email" class="transition duration-200">E-mail</label>
+                            <input type="email" name="email" id="email" placeholder="<%= user.email %>"
+                                value="<%= user.email %>" autocomplete="email" required
+                                class="transition duration-200 border dark:border-slate-700 focus:transition-none focus:border-blue-400 dark:focus:border-blue-400 focus:ring focus:outline outline-blue-400 hover:text-black dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 rounded-xl text-center w-full sm:w-auto" />
+                        </div>
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-center items-center w-full sm:w-auto">
+                            <label for="username" class="transition duration-200">Username</label>
+                            <input type="text" name="username" id="username" placeholder="<%= user.username %>"
+                                value="<%= user.username %>" autocomplete="username" required
+                                class="transition duration-200 border dark:border-slate-700 focus:transition-none focus:border-blue-400 dark:focus:border-blue-400 focus:ring focus:outline outline-blue-400 hover:text-black dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 rounded-xl text-center w-full sm:w-auto" />
+                        </div>
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-center items-center w-full sm:w-auto">
+                            <label for="enabled" class="transition duration-200">Enabled</i></label>
+                            <select required name="enabled" id="enabled"
+                                class="transition duration-200 border dark:border-slate-700 cursor-pointer text-center rounded-xl group-hover:bg-blue-600 dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 focus:transition-none focus:border-blue-400 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-400 px-4 py-2">
+                                <option value=true <%= user.admin.enabled === true ? 'selected' : '' %>>Yes
+                                </option>
+                                <option value=false <%= user.admin.enabled === false ? 'selected' : '' %>>No
+                                </option>
+                            </select>
+                        </div>
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-center items-center w-full sm:w-auto">
+                            <label for="level" class="transition duration-200">Level</i></label>
+                            <select required name="level" id="level"
+                                class="transition duration-200 border dark:border-slate-700 cursor-pointer text-center rounded-xl group-hover:bg-blue-600 dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 focus:transition-none focus:border-blue-400 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-400 px-4 py-2">
+                                <option value="Newbie" <%= user.admin.level === "Newbie" ? 'selected' : '' %>>
+                                    Newbie
+                                </option>
+                                <option value="Bronze" <%= user.admin.level === "Bronze" ? 'selected' : '' %>>
+                                    Bronze
+                                </option>
+                                <option value="Silver" <%= user.admin.level === "Silver" ? 'selected' : '' %>>
+                                    Silver
+                                </option>
+                                <option value="Gold" <%= user.admin.level === "Gold" ? 'selected' : '' %>>
+                                    Gold
+                                </option>
+                                <option value="Platinum" <%= user.admin.level === "Platinum" ? 'selected' : '' %>>
+                                    Platinum
+                                </option>
+                                <option value="Titanium" <%= user.admin.level === "Titanium" ? 'selected' : '' %>>
+                                    Titanium
+                                </option>
+                                <option value="Palladium" <%= user.admin.level === "Palladium" ? 'selected' : '' %>>
+                                    Palladium
+                                </option>
+                                <option value="Diamond" <%= user.admin.level === "Diamond" ? 'selected' : '' %>>
+                                    Diamond
+                                </option>
+                                <option value="Antimatter" <%= user.admin.level === "Antimatter" ? 'selected' : '' %>>
+                                    Antimatter
+                                </option>
+                            </select>
+                        </div>
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-center items-center w-full sm:w-auto">
+                            <label for="role" class="transition duration-200">Role</i></label>
+                            <select name="role" id="role"
+                                class="transition duration-200 border dark:border-slate-700 cursor-pointer text-center rounded-xl group-hover:bg-blue-600 dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 focus:transition-none focus:border-blue-400 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-400 px-4 py-2">
+                                <option value="Banned" <%=user.admin.role==='Banned' ? 'selected' : '' %>>
+                                    Banned
+                                </option>
+                                <option value="User" <%=user.admin.role==='User' ? 'selected' : '' %>>
+                                    User
+                                </option>
+                                <option value="Moderator" <%=user.admin.role==='Moderator' ? 'selected' : '' %>>
+                                    Modo
+                                </option>
+                                <option value="Administrator" <%=user.admin.role==='Administrator' ? 'selected' : '' %>>
+                                    Admin
+                                </option>
+                            </select>
+                        </div>
+
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-center items-center w-full sm:w-auto">
+                            <label for="adminPassword" class="transition duration-200">Admin Password</label>
+                            <p class="text-sm transition duration-200">Enter Admin password to authorize the modification of this user.</p>
+                            <input type="password" name="password" id="password" placeholder="********"
+                                value="" autocomplete="current-password" required
+                                class="transition duration-200 border dark:border-slate-700 focus:transition-none focus:border-blue-400 dark:focus:border-blue-400 focus:ring focus:outline outline-blue-400 hover:text-black dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 rounded-xl text-center w-full sm:w-auto" />
+                        </div>
+
+                        <button onclick="updateUser('<%= user._id %>'); return false"
+                            class="transition duration-200 work-sans text-xl text-gray-700 dark:text-blue-500 hover:text-slate-100 border-blue-500 bg-slate-100 hover:bg-blue-400 dark:bg-transparent dark:hover:bg-blue-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-2 px-8 w-full sm:w-auto">
+                            Save
+                        </button>
+                    </form>
+                    <div class="flex flex-col items-center pb-8 px-8">
+                        <button onclick="deleteUser('<%= user._id %>'); return false"
+                            class="transition duration-200 work-sans text-xl text-gray-700 dark:text-red-600 hover:text-slate-100 border-red-600 bg-slate-100 hover:bg-red-500 dark:bg-transparent dark:hover:bg-red-500 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-2 px-8 w-full sm:w-auto">
+                            Delete User
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="errorBottom" class="hidden work-sans text-xl text-center text-red-600 cursor-default whitespace-pre-line"></div>
+
+            </main>
+            <script src="/js/admin.js"></script>
+
+            <%- include('../includes/footer.ejs') %>

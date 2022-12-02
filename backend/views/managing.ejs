@@ -1,0 +1,51 @@
+<%- include('includes/head.ejs') %>
+    </head>
+
+    <%- include('includes/main.ejs') %>
+
+        <div class="h-screen/mhf sm:h-screen/hf overflow-y-auto flex items-center justify-center flex-col"
+            style="scrollbar-width:thin;">
+
+            <% if (pictures.length > 0) { %>
+
+                <div id="pictureList" class="flex items-center justify-center flex-row flex-wrap gap-4">
+
+                    <% for (let picture of pictures) { %>
+
+                    <div class="w-full sm:w-[32.5%] grow-0 flex justify-center hover:shadow-2xl active:shadow-2xl focus:shadow-2xl relative group "
+                        tabindex="0">
+                        <div
+                            class="bg-gradient-to-t from-gray-700 dark:from-[#121212] absolute left-0 right-0 bottom-0 group-hover:flex group-active:flex group-focus:flex group-hover:shadow-2xl group-active:shadow-2xl group-focus:shadow-2xl justify-around rounded-xl hidden">
+                            <a href="/gallery/<%= picture._id %>">
+                                <button
+                                    class="py-4 px-5 rounded-full transition duration-200 hover:bg-slate-100 hover:bg-opacity-30 cursor-pointer">&#128064;
+                                </button>
+                            </a>
+                            <button onclick="deletePicture(this, '<%=picture._id%>')"
+                                class="p-4 rounded-full transition duration-200 hover:bg-slate-100 hover:bg-opacity-30 cursor-pointer">
+                                <img src="/images/icons/trash.svg" alt="trash" height="20px" width="24px" />
+                            </button>
+                        </div>
+                        <img src="<%= picture.imgUrl %>" alt="<%= picture.title %>" class="rounded-xl" />
+                    </div>
+
+                    <% } %>
+                </div>
+
+            <% } else { %>
+                <div id="noPicture" class="flex flex-col justify-center text-center dark:text-slate-100 items-center w-full sm:pl-4">
+                    <h1 class="work-sans p-8">You don't have any photo yet ...</h1>
+                    <a href="/editing"
+                        class="work-sans transition duration-200 w-full sm:w-auto text-gray-700 dark:text-blue-600 hover:text-slate-100 border-blue-600 bg-slate-100 hover:bg-blue-500 dark:bg-transparent dark:hover:bg-blue-500 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3">
+                        <i class="fa-solid fa-camera text-xl xl:text-2xl 2xl:text-4xl text-center">
+                            Take a Picture
+                        </i>
+                    </a>
+                </div>
+            <% } %>
+
+        </div>
+        </main>
+        <script src="/js/managing.js"></script>
+
+        <%- include('includes/footer.ejs') %>

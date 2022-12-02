@@ -1,0 +1,73 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <%- include('../includes/main.ejs') %>
+
+        <div class="work-sans flex flex-col lg:flex-row">
+            <div class="flex flex-col items-center">
+                <h1 class="font-bold dark:text-slate-100">
+                    <%= picture.title %>
+                </h1>
+                <p class="dark:text-slate-100">
+                    <%= picture.description %>
+                </p>
+                <div class="flex justify-center hover:shadow-2xl active:shadow-2xl focus:shadow-2xl relative group my-4"
+                    tabindex="0">
+                    <div
+                        class="bg-gray-700 bg-opacity-70 rounded-bl-xl rounded-tr-xl absolute top-0 right-0 group-hover:flex group-active:flex group-focus:flex group-hover:shadow-2xl group-active:shadow-2xl group-focus:shadow-2xl justify-around hidden">
+                        <a href="/admin/managing/<%= picture._id %>">
+                            <button
+                                class="py-4 px-5 rounded-full transition duration-200 hover:bg-slate-100 hover:bg-opacity-30 cursor-pointer">&#128295;
+                            </button>
+                        </a>
+                    </div>
+                    <img src="<%= picture.imgUrl %>" alt="<%= picture.title %>" class="rounded-xl" />
+                </div>
+                <div class="flex flex-row gap-4 w-full justify-between sm:px-4">
+                    <div id="likeNumber" class="w-52 cursor-default dark:text-slate-100">
+                        <%= picture.likes.length %>
+                            <%= picture.likes.length> 1 ? "Likes" : "Like" %>
+                    </div>
+                    <a href="/admin/picture/user/<%= owner %>"
+                        class="w-52 cursor-pointer text-gray-700 dark:text-slate-600 hover:text-black dark:hover:text-slate-100 text-center">
+                        Posted by <%= owner %>
+                    </a>
+                    <div id="commentNumber" class="w-52 cursor-default text-right dark:text-slate-100">
+                        <%= picture.comments.length %>
+                            <%= picture.comments.length> 1 ? "Comments" : "Comment" %>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col items-center grow text-center lg:w-[25%] lg:ml-4 mt-4 lg:mt-0">
+                <div id="commentList">
+                    <% if (picture.comments.length> 0) {
+                        for (let comment of picture.comments) { %>
+                        <div>
+                            <a href="/admin/picture/user/<%= comment.username %>"
+                                class="cursor-pointer text-gray-700 dark:text-slate-600 hover:text-black dark:hover:text-slate-100">
+                                <%= comment.username %>
+                            </a>
+                            <div class="group flex gap-2 justify-center dark:text-slate-100" tabindex="0">
+                                <p>
+                                    <%= comment.text %>
+                                </p>
+                                <button
+                                    class="group-hover:flex group-active:flex active:flex group-focus:flex focus:flex items-center hidden"
+                                    onclick="adminDeleteComment(this, '<%= picture._id %>', '<%= comment._id %>')">&#10060;
+                                </button>
+                            </div>
+                        </div>
+                        <% } %>
+
+                            <% } else { %>
+                                <p id="noComment" class="dark:text-slate-100">
+                                    There is no comment yet ...
+                                </p>
+                                <% } %>
+                </div>
+            </div>
+        </div>
+        </main>
+        <script src="/js/pictureDetail.js"></script>
+
+        <%- include('../includes/footer.ejs') %>

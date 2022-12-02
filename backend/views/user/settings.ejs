@@ -1,0 +1,130 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <%- include('../includes/main.ejs') %>
+
+        <div class="max-h-screen/mhf sm:max-h-screen/hf h-screen/mhf sm:h-screen/hf overflow-y-scroll overflow-x-hidden flex flex-col items-center justify-center">
+
+            <div id="error" class="hidden work-sans text-xl text-center text-red-600 cursor-default whitespace-pre-line" ></div>
+            <div class="relative border border-double dark:border-slate-700 w-full sm:w-[38rem] rounded-3xl m-4">
+                <div class="relative border border-double dark:border-slate-700 w-auto rounded-2xl m-2">
+
+                    <div class="absolute top-3 right-3 border dark:border-slate-700 w-10 h-10 rounded-full"></div>
+
+                    <form action="#" method="POST" onsubmit="setSettings(); return false" class="flex flex-col items-center gap-8 p-8" action="/settings/<%= user._id %>">
+                       
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-justify sm:text-center items-center w-full sm:w-auto">
+                            <label for="email" class="transition duration-200 text-center">My E-mail</label>
+                            <p class="text-sm transition duration-200">Changing your e-mail will lock your account.</p>
+                            <p class="text-sm transition duration-200">You will receive a new validation e-mail to unlock it.</p>
+                            <input type="email" name="email" id="email" placeholder="<%= user.email %>"
+                                value="<%= user.email %>" autocomplete="email" required
+                                class="transition duration-200 border dark:border-slate-700 focus:transition-none focus:border-blue-500 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-500 hover:text-black dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 rounded-xl text-center w-full sm:w-auto" />
+                        </div>
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-justify sm:text-center items-center w-full sm:w-auto">
+
+                            <label for="username" class="transition duration-200 text-center">My Username</label>
+                            <p class="text-sm transition duration-200">Changing your username will make it available to other users.</p>
+                            <p class="text-sm transition duration-200">Since username are uniques, you risk losing your actual one permanently.</p>
+                            <input type="text" name="username" id="username" placeholder="<%= user.username %>"
+                                value="<%= user.username %>" autocomplete="username" required
+                                class="transition duration-200 border dark:border-slate-700 focus:transition-none focus:border-blue-500 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-500 hover:text-black dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 rounded-xl text-center w-full sm:w-auto" />
+                        </div>
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-justify sm:text-center items-center w-full sm:w-auto">
+
+                            <label for="password" class="transition duration-200 text-center">Change my Password</label>
+                            <p class="text-sm transition duration-200">Leave this field empty to keep your current password.</p>
+                            <input type="password" name="password" id="password" placeholder="New Password"
+                                value="" autocomplete="new-password"
+                                class="transition duration-200 border dark:border-slate-700 focus:transition-none focus:border-blue-500 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-500 hover:text-black dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 rounded-xl text-center w-full sm:w-auto" />
+                        </div>
+                        
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black flex flex-col text-justify sm:text-center items-center w-full sm:w-auto">
+                            <label for="comsMail" class="transition duration-200 text-center">Receive an E-mail for new Comments</i></label>
+                            <p class="text-sm transition duration-200">You will receive an e-mail each time you get a new comment.</p>
+                            <select required name="comsMail" id="comsMail"
+                                class="transition duration-200 cursor-pointer text-center rounded-xl group-hover:bg-blue-600 border dark:border-slate-700 dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 focus:transition-none focus:border-blue-500 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-500 px-4 py-2">
+                                <option class="text-left" value="true" <%= user.prefs.comsMail === true ? 'selected' : '' %>>Yes</option>
+                                <option class="text-left" value="false" <%= user.prefs.comsMail === false ? 'selected' : '' %>>No</option>
+                            </select>
+                        </div>
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-justify sm:text-center items-center w-full sm:w-auto">
+                            <label for="likesMail" class="transition duration-200 text-center">Receive an E-mail for new Likes</i></label>
+                            <p class="text-sm transition duration-200">You will receive an e-mail each time you get a new like.</p>
+                            <select required name="likesMail" id="likesMail"
+                                class="transition duration-200 cursor-pointer text-center rounded-xl group-hover:bg-blue-600 border dark:border-slate-700 dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 focus:transition-none focus:border-blue-500 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-500 px-4 py-2">
+                                <option class="text-left" value="true" <%= user.prefs.likesMail === true ? 'selected' : '' %>>Yes</option>
+                                <option class="text-left" value="false" <%= user.prefs.likesMail === false ? 'selected' : '' %>>No</option>
+                            </select>
+                        </div>
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-justify sm:text-center items-center w-full sm:w-auto">
+                            <label for="levelsMail" class="transition duration-200 text-center">Receive an E-mail for new Levels</i></label>
+                            <p class="text-sm transition duration-200">You will receive an e-mail each time your account reaches a new level.</p>
+                            <p class="text-sm transition duration-200">Current levels: 1, 10, 25, 50, 100, 250, 500, 1000 Likes.</p>
+                            <select required name="levelsMail" id="levelsMail"
+                                class="transition duration-200 cursor-pointer text-center rounded-xl group-hover:bg-blue-600 border dark:border-slate-700 dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 focus:transition-none focus:border-blue-500 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-500 px-4 py-2">
+                                <option class="text-left" value="true" <%= user.prefs.levelsMail === true ? 'selected' : '' %>>Yes</option>
+                                <option class="text-left" value="false" <%= user.prefs.levelsMail === false ? 'selected' : '' %>>No</option>
+                            </select>
+                        </div>
+
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-justify sm:text-center items-center w-full sm:w-auto">
+                            <label for="visibility" class="transition duration-200 text-center">Default Visibility for new Photos</i></label>
+                            <p class="text-sm transition duration-200">Private photo does not appear in the Gallery.</p>
+                            <p class="text-sm transition duration-200">In this case, other users can NOT like it, comment it, nor see it.</p>
+                            <p class="text-sm transition duration-200">You still can change at anytime the visibility of each photo independantly.</p>
+                            <select required name="visibility" id="visibility"
+                                class="transition duration-200 cursor-pointer text-center rounded-xl group-hover:bg-blue-600 border dark:border-slate-700 dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 focus:transition-none focus:border-blue-500 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-500 px-4 py-2">
+                                <option class="text-left" value="public" <%= user.prefs.visibility === 'public' ? 'selected' : '' %>>Public</option>
+                                <option class="text-left" value="private" <%= user.prefs.visibility === 'private' ? 'selected' : '' %>>Private</option>
+                            </select>
+                        </div>
+
+                        <div
+                        class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-justify sm:text-center items-center w-full sm:w-auto">
+                            <label for="currentPassword" class="transition duration-200 text-center">My current Password</label>
+                            <p class="text-sm transition duration-200">Enter your actual password to authorize the modification of your settings.</p>
+                            <input type="password" name="currentPassword" id="currentPassword" placeholder="********"
+                                value="" autocomplete="current-password" required
+                                class="transition duration-200 border dark:border-slate-700 focus:transition-none focus:border-blue-500 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-500 hover:text-black dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 rounded-xl text-center w-full sm:w-auto" />
+                        </div>
+
+                        <button onclick="setSettings(); return false"
+                            class="transition duration-200 work-sans text-xl text-gray-700 dark:text-blue-500 hover:text-slate-100 border-blue-500 bg-slate-100 hover:bg-blue-400 dark:bg-transparent dark:hover:bg-blue-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-2 px-8 w-full sm:w-auto">
+                            Save my Settings
+                        </button>
+                    </form>
+
+                    <div class="flex flex-col items-center pb-8 px-8">
+                        <button id="deleteButton" onclick="showConfirmButton()"
+                            class="transition duration-200 work-sans text-xl text-gray-700 dark:text-red-500 hover:text-slate-100 border-red-500 bg-slate-100 hover:bg-red-400 dark:bg-transparent dark:hover:bg-red-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-2 px-8 w-full sm:w-auto">
+                            Delete my Account
+                        </button>
+                        <div id="confirmButton" class="flex-col justify-around text-center gap-4 hidden">
+                            <p class="transition duration-200 work-sans text-sm text-red-500">Please, confirm this action, as it is <span class="font-bold">irreversible</span>.<br>Note that all your data will be wiped <span class="font-bold">permanently</span>.</p>
+                            <button onclick="showDeleteButton()"
+                                class="transition duration-200 work-sans text-xl text-gray-700 dark:text-orange-500 hover:text-slate-100 border-orange-500 bg-slate-100 hover:bg-orange-400 dark:bg-transparent dark:hover:bg-orange-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-2 px-8 w-full sm:w-auto">
+                                Cancel
+                            </button>
+                            <button onclick="deleteUser()"
+                                class="transition duration-200 work-sans text-xl text-gray-700 dark:text-red-600 hover:text-slate-100 border-red-600 bg-slate-100 hover:bg-red-500 dark:bg-transparent dark:hover:bg-red-500 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-2 px-8 w-full sm:w-auto">
+                                Delete Permanently
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="errorBottom" class="hidden work-sans text-xl text-center text-red-600 cursor-default whitespace-pre-line" ></div>
+
+            </main>
+            <script src="/js/settings.js"></script>
+
+            <%- include('../includes/footer.ejs') %>

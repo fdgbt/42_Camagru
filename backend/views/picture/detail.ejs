@@ -1,0 +1,98 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <%- include('../includes/main.ejs') %>
+
+        <div class="work-sans flex flex-col lg:flex-row" >
+            <div class="w-full lg:w-3/4 flex flex-col items-center text-center">
+                <h1 class="font-bold dark:text-slate-100 break-anywhere">
+                    <%= picture.title %>
+                </h1>
+                <p class="dark:text-slate-100 break-anywhere">
+                    <%= picture.description %>
+                </p>
+                <div class="flex justify-center hover:shadow-2xl active:shadow-2xl focus:shadow-2xl relative group my-4"
+                    tabindex="0">
+                    <div
+                        class="bg-gray-700 bg-opacity-70 rounded-bl-xl rounded-tr-xl absolute left-0 bottom-0 group-hover:flex group-active:flex group-focus:flex flex-col justify-around hidden">
+                        <% if (picture.likes.find( (like) => { return (like.toString() === user._id.toString()) } )) {%>
+                            <button id="btnLike" onClick="like(this, '<%= picture._id %>')"
+                                class="py-4 px-5 rounded-full transition duration-200 bg-green-400 bg-opacity-50 hover:bg-green-400 cursor-pointer">&#10084;&#65039;
+                            </button>
+                        <% } else { %>
+                            <button id="btnLike" onClick="like(this, '<%= picture._id %>')"
+                                class="py-4 px-5 rounded-full transition duration-200 hover:bg-slate-100 hover:bg-opacity-30 cursor-pointer">&#10084;&#65039;
+                            </button>
+                        <% } %>
+                    </div>
+                    <div
+                        class="bg-gray-700 bg-opacity-70 rounded-br-xl rounded-tl-xl absolute right-0 bottom-0 group-hover:flex group-active:flex group-focus:flex flex-col justify-around hidden">
+                        <button 
+                            onClick="comment()"
+                            class="py-4 px-5 rounded-full transition duration-200 hover:bg-slate-100 hover:bg-opacity-30 cursor-pointer">&#128172;
+                        </button>
+                    </div>
+                    <% if (owner === user.username) { %>
+                    <div
+                        class="bg-gray-700 bg-opacity-70 rounded-bl-xl rounded-tr-xl absolute top-0 right-0 group-hover:flex group-active:flex group-focus:flex group-hover:shadow-2xl group-active:shadow-2xl group-focus:shadow-2xl justify-around hidden">
+                        <a href="/managing/<%= picture._id %>">
+                            <button
+                                class="py-4 px-5 rounded-full transition duration-200 hover:bg-slate-100 hover:bg-opacity-30 cursor-pointer">&#128295;
+                            </button>
+                        </a>
+                    </div>
+                    <% } %>
+                    <img src="<%= picture.imgUrl %>" alt="<%= picture.title %>" class="rounded-xl" />
+                </div>
+                <div class="flex flex-row gap-4 w-full justify-between sm:px-4">
+                    <div id="likeNumber" class="w-52 cursor-default dark:text-slate-100">
+                        <%= picture.likes.length %> <%= picture.likes.length > 1 ? "Likes" : "Like" %>
+                    </div>
+                    <a href="/gallery/user/<%= owner %>"
+                        class="w-52 cursor-pointer text-gray-700 dark:text-slate-600 hover:text-black dark:hover:text-slate-100 text-center">
+                        Posted by <%= owner %>
+                    </a>
+                    <div id="commentNumber" class="w-52 cursor-default text-right dark:text-slate-100">
+                        <%= picture.comments.length %> <%= picture.comments.length > 1 ? "Comments" : "Comment" %>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/4 flex flex-col items-center grow text-center break-anywhere lg:ml-4 mt-4 lg:mt-0">
+                <div id="commentList">
+                    <div id="error" class="hidden work-sans text-xl text-center text-red-600 cursor-default" ></div>
+
+                    <% if (picture.comments.length > 0) {
+                        for (let comment of picture.comments) { %>
+                            <div>
+                                <a href="/gallery/user/<%= comment.username %>"
+                                    class="cursor-pointer text-gray-700 dark:text-slate-600 hover:text-black dark:hover:text-slate-100"><%= comment.username %></a>
+                                <div
+                                    class="group flex gap-2 justify-center" tabindex="0">
+                                    <p class="dark:text-slate-100"><%= comment.text %></p>
+                                    <% if (user._id.toString() === comment.userId.toString()) { %>
+                                        <button
+                                            class="group-hover:flex group-active:flex active:flex group-focus:flex focus:flex items-center hidden"
+                                            onclick="deleteComment(this, '<%= picture._id %>', '<%= comment._id %>')">&#10060;
+                                        </button>
+                                    <% } %>
+                                </div>
+                            </div>
+                        <% } %>
+
+                    <% } else { %>
+                        <p id="noComment" class="dark:text-slate-100">
+                            There is no comment yet ...
+                        </p>
+                    <% } %>
+                </div>
+                <textarea name="commentMsg" id="commentMsg" placeholder=" Write a comment ..." class="w-[60%] my-4 rounded-xl focus:transition-none focus:border-sky-400 dark:focus:border-sky-400 focus:ring focus:outline outline-sky-400 dark:bg-zinc-900 border dark:border-slate-700 italic text-center dark:text-slate-100"></textarea>
+                <button onClick="submitComment('<%= picture._id %>')"
+                    class="transition duration-200 text-gray-700 dark:text-sky-500 hover:text-slate-100 border-sky-500 bg-slate-100 hover:bg-sky-400 dark:bg-transparent dark:hover:bg-sky-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3 cursor-crosshair">
+                    <i class="fa-regular fa-comment-dots text-xl lg:text-2xl"> Comment</i>
+                </button>
+            </div>
+        </div>
+        </main>
+        <script src="/js/pictureDetail.js"></script>
+
+        <%- include('../includes/footer.ejs') %>

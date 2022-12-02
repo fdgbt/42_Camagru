@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .dancing-script {
+        font-family: 'Dancing Script', cursive;
+    }
+    .inspiration {
+        font-family: 'Inspiration', cursive;
+    }
+    .work-sans {
+        font-family: 'Work Sans', sans-serif;
+    }
+    .break-anywhere {
+        overflow-wrap: anywhere;
+    }
+}

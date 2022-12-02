@@ -1,0 +1,27 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <%- include('../includes/main.ejs') %>
+
+        <div class="max-h-screen/mhf sm:max-h-screen/hf h-screen/mhf sm:h-screen/hf flex flex-col justify-center items-center">
+
+            <div class="work-sans flex flex-col items-center">
+                <img class="sm:w-1/3 rounded-xl" src="/images/errors/401bis.webp" />
+                <h1 class="pt-4 sm:text-5xl font-bold text-gray-700 dark:text-slate-100 text-center">Sorry !</h1>
+                <h2 class="sm:text-5xl font-bold text-gray-700 dark:text-slate-100 text-center pt-4">Your account is
+                    currently banned. &#128545;</h2>
+                <p class="sm:text-5xl font-bold text-gray-700 dark:text-slate-100 text-center pt-4">You can contact the
+                    moderation to appeal your situation.</p>
+            </div>
+
+            <div class="work-sans flex flex-col sm:flex-row sm:justify-evenly text-center my-8 gap-8">
+                <a href="/contact"
+                    class="transition duration-200 work-sans sm:text-4xl text-gray-700 dark:text-red-500 hover:text-slate-100 border-red-500 bg-slate-100 hover:bg-red-400 dark:bg-transparent dark:hover:bg-red-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-2 px-8 w-full sm:w-auto">
+                    Contact Moderation
+                </a>
+            </div>
+        </div>
+
+        </main>
+
+        <%- include('../includes/footer.ejs') %>

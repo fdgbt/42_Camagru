@@ -1,0 +1,203 @@
+<%- include('includes/head.ejs') %>
+    </head>
+
+    <%- include('includes/main.ejs') %>
+
+        <div
+            class="max-h-screen/mhf sm:max-h-screen/hf h-screen/mhf sm:h-screen/hf overflow-y-scroll overflow-x-hidden flex flex-col sm:flex-row">
+            <div id="leftPanel" style="scrollbar-width:thin;" class="w-full sm:w-2/3 flex flex-col sm:overflow-y-auto">
+
+                <div id="canvasList" class="relative w-full overflow-hidden">
+                    <img id="canvasFilter" draggable="false"
+                        class="absolute z-20 w-full bg-transparent rounded-xl" ></img>
+                    <img id="canvasSticker" draggable="false"
+                        class="absolute z-10 w-1/4 bg-transparent cursor-grab select-none"></img>
+                    <div id="stretchSticker" draggable="false" class="absolute z-30 hidden cursor-pointer text-red-700 select-none">
+                        <i class="fa-solid fa-up-right-and-down-left-from-center"></i>    
+                    </div>
+                    
+                    <video id="userVideo" autoplay="true"
+                        class="relative z-0 border dark:border-slate-700 rounded-xl w-full aspect-video bg-slate-100 dark:bg-transparent"
+                        poster="/images/errors/nosignal.png"></video>
+                    <canvas id="canvasVideo" class="hidden bg-none" width="1280"
+                        height="720"></canvas>
+                    <div id="tailWindPreloadClass1" class="hidden cursor-grabbing"></div>
+                    <div id="tailWindPreloadClass2" class="hidden cursor-nesw-resize"></div>
+                    <div id="tailWindPreloadClass3" class="hidden cursor-not-allowed"></div>
+                </div>
+
+                <div class="py-4">
+                    <div class="flex flex-col sm:flex-row w-full justify-around gap-4">
+                        <button id="enableVideo" onclick="enableCamButton()"
+                            class="transition duration-200 border-green-600 bg-slate-100 hover:bg-green-500 dark:bg-transparent dark:hover:bg-green-500 text-gray-700 dark:text-green-600 hover:text-slate-100 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3 cursor-progress">
+                            <i class="fa fa-video-camera text-xl lg:text-2xl xl:text-4xl"> Start Camera</i>
+                        </button>
+                        <button id="uploadImage" onclick="uploadPhotoButton()"
+                            class="transition duration-200 border-blue-600 bg-slate-100 hover:bg-blue-500 dark:bg-transparent dark:hover:bg-blue-500 text-gray-700 dark:text-blue-600 hover:text-slate-100 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3 sm:ml-4 sm:my-0 cursor-copy">
+                            <i class="fa-solid fa-camera text-xl lg:text-2xl xl:text-4xl"> Upload Photo</i>
+                        </button>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row w-full text-center justify-around gap-4">
+                        <form id="uploadLocal" action="/editing" method="POST" enctype="multipart/form-data" class="hidden">
+                            <label for="uploadInput" class="cursor-copy">
+                                <div
+                                    class="transition duration-200 border-emerald-600 bg-slate-100 hover:bg-emerald-500 dark:bg-transparent dark:hover:bg-emerald-500 text-gray-700 dark:text-emerald-600 hover:text-slate-100 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3 sm:ml-4 sm:my-0">
+                                    <i class="fa-solid fa-file-image text-xl lg:text-2xl xl:text-4xl"> From File</i>
+                                </div>
+                            </label>
+                            <input type="file" accept=".jpg,.jpeg,.png" name="uploadInput" id="uploadInput" class="hidden"
+                                onchange="fileButtonChange()" onclick="fileButtonClick()">
+                        </form>
+                        <button id="uploadWeb" onclick="webButton()"
+                            class="hidden transition duration-200 border-teal-600 bg-slate-100 hover:bg-teal-500 dark:bg-transparent dark:hover:bg-teal-500 text-gray-700 dark:text-teal-600 hover:text-slate-100 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3 sm:ml-4 sm:my-0 cursor-alias">
+                            <i class="fa-solid fa-link text-xl lg:text-2xl xl:text-4xl"> From Web</i>
+                        </button>
+                    </div>
+
+                    <div id="uploadLink" class="hidden flex justify-around">
+                        <div
+                            class="transition duration-200 work-sans text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-gray-700 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 sm:w-auto flex flex-col xl:flex-row text-center items-center gap-4 w-full">
+                            <label for="linkInput">
+                                Enter the URL
+                            </label>
+                            <input type="url" name="linkInput" id="linkInput" placeholder="https://" required
+                                class="border dark:border-slate-700 focus:outline-offset-0 focus:outline-none focus:ring focus:outline-cyan-600 hover:text-black dark:hover:text-slate-100 dark:bg-zinc-900 rounded-xl text-center w-full sm:w-auto" />
+
+                            <button onclick="linkButton()"
+                                class="transition duration-200 text-gray-700 dark:text-cyan-600 hover:text-slate-100 border-cyan-600 bg-slate-100 hover:bg-cyan-500 dark:bg-transparent dark:hover:bg-cyan-500 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3 sm:ml-4 sm:my-0 cursor-copy">
+                                <i class="fa-solid fa-file-import text-xl lg:text-2xl"> Save</i>
+                            </button>
+                            <button onclick="cancelLinkButton()"
+                                class="transition duration-200 text-gray-700 dark:text-orange-400 hover:text-slate-100 border-orange-400 bg-slate-100 hover:bg-orange-300 dark:bg-transparent dark:hover:bg-orange-300 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3 sm:ml-4 sm:my-0 cursor-crosshair">
+                                <i class="fa-solid fa-rotate-left text-xl lg:text-2xl"> Cancel</i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row w-full justify-around gap-4">
+                        
+                        <div id="effectList"
+                            class="hidden group transition duration-200 text-xl lg:text-2xl xl:text-4xl text-gray-700 dark:text-sky-500 text-center hover:text-slate-100 border-sky-500 bg-slate-100 hover:bg-sky-400 dark:bg-transparent dark:hover:bg-sky-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl border-2 rounded-full p-3">
+                            <label for="effects" class="dark:bg-transparent dark:hover:bg-sky-400 dark:hover:text-slate-100">
+                                    <i class="fa-solid fa-masks-theater"></i>
+                            </label>
+                            <%- include('includes/effects.ejs') %>
+                        </div>
+                        <div id="extraEffectList"
+                            class="hidden group transition duration-200 text-xl lg:text-2xl xl:text-4xl text-gray-700 dark:text-sky-500 text-center hover:text-slate-100 border-sky-500 bg-slate-100 hover:bg-sky-400 dark:bg-transparent dark:hover:bg-sky-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl border-2 rounded-full p-3">
+                            <label for="extraEffects" class="dark:bg-transparent dark:hover:bg-sky-400 dark:hover:text-slate-100">
+                                <i class="fa-solid fa-photo-film" onclick="setSpecialButton()"></i>
+                            </label>
+                            <%- include('includes/extraEffects.ejs') %>
+                        </div>
+                        <div id="jimpEffectList"
+                            class="hidden group transition duration-200 text-xl lg:text-2xl xl:text-4xl text-gray-700 dark:text-sky-500 text-center hover:text-slate-100 border-sky-500 bg-slate-100 hover:bg-sky-400 dark:bg-transparent dark:hover:bg-sky-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl border-2 rounded-full p-3">
+                            <label for="jimpEffects" class="dark:bg-transparent dark:hover:bg-sky-400 dark:hover:text-slate-100">
+                                <i class="fa-solid fa-key"></i>
+                            </label>
+                            <%- include('includes/jimpEffects.ejs') %>
+                        </div>
+
+                        <input type="text" name="specialInput" id="specialInput" class="hidden">
+                        <button id="disableVideo" onclick="disableCamButton()"
+                            class="hidden transition duration-200 text-gray-700 dark:text-red-600 hover:text-slate-100 border-red-600 bg-slate-100 hover:bg-red-500 dark:bg-transparent dark:hover:bg-red-500 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full cursor-cell p-3 sm:ml-4 sm:my-0">
+                            <i class="fa-solid fa-video-slash text-xl lg:text-2xl xl:text-4xl"> Stop Camera</i>
+                        </button>
+                        <button id="cancelUpload" onclick="cancelUploadButton()"
+                            class="hidden transition duration-200 text-gray-700 dark:text-red-600 hover:text-slate-100 border-red-600 bg-slate-100 hover:bg-red-500 dark:bg-transparent dark:hover:bg-red-500 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full cursor-cell p-3 sm:ml-4 sm:my-0">
+                            <i class="fa-solid fa-eject text-xl lg:text-2xl xl:text-4xl"> Stop Upload</i>
+                        </button>
+                        <button id="moreEffect" onclick="setMoreEffectButton()"
+                            class="hidden transition duration-200 text-gray-700 dark:text-sky-600 hover:text-slate-100 border-sky-600 bg-slate-100 hover:bg-sky-500 dark:bg-transparent dark:hover:bg-sky-500 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full cursor-copy p-3">
+                            <i class="fa-solid fa-icons text-xl lg:text-2xl xl:text-4xl"> More</i>
+                        </button>
+                        <button id="upload" onclick="uploadButton()"
+                            class="hidden transition duration-200 text-gray-700 dark:text-yellow-600 hover:text-slate-100 border-yellow-600 bg-slate-100 hover:bg-yellow-500 dark:bg-transparent dark:hover:bg-yellow-500 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full cursor-wait p-4">
+                            <i class="fa-solid fa-cloud-arrow-up text-xl lg:text-2xl xl:text-4xl"> Upload</i>
+                        </button>
+                        <button id="takePhoto" onclick="shootButton()"
+                            class="hidden transition duration-200 text-gray-700 dark:text-yellow-600 hover:text-slate-100 border-yellow-600 bg-slate-100 hover:bg-yellow-500 dark:bg-transparent dark:hover:bg-yellow-500 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full cursor-wait p-4">
+                            <i class="fa-solid fa-clapperboard text-xl lg:text-2xl xl:text-4xl"> Shoot</i>
+                        </button>
+                        <button id="cancelEffect" onclick="cancelEffectButton()"
+                            class="hidden transition duration-200 text-gray-700 dark:text-orange-500 hover:text-slate-100 border-orange-500 bg-slate-100 hover:bg-orange-400 dark:bg-transparent dark:hover:bg-orange-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full cursor-crosshair p-3">
+                            <i class="fa-solid fa-rotate-left text-xl lg:text-2xl xl:text-4xl"> Cancel</i>
+                        </button>
+                        <button id="cancelMore" onclick="cancelMoreButton()"
+                            class="hidden transition duration-200 text-gray-700 dark:text-orange-600 hover:text-slate-100 border-orange-600 bg-slate-100 hover:bg-orange-500 dark:bg-transparent dark:hover:bg-orange-500 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full cursor-crosshair p-3">
+                            <i class="fa-solid fa-rotate-left text-xl lg:text-2xl xl:text-4xl"> Cancel</i>
+                        </button>
+                        <button id="cancelActual" onclick="cancelActualButton()"
+                            class="hidden transition duration-200 text-gray-700 dark:text-orange-700 hover:text-slate-100 border-orange-700 bg-slate-100 hover:bg-orange-600 dark:bg-transparent dark:hover:bg-orange-600 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full cursor-crosshair p-3">
+                            <i class="fa-solid fa-rotate-left text-xl lg:text-2xl xl:text-4xl"> Cancel</i>
+                        </button>
+                        <button id="cancelSpecial" onclick="cancelSpecialButton()"
+                            class="hidden transition duration-200 text-gray-700 dark:text-orange-400 hover:text-slate-100 border-orange-400 bg-slate-100 hover:bg-orange-300 dark:bg-transparent dark:hover:bg-orange-300 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full cursor-crosshair p-3">
+                            <i class="fa-solid fa-rotate-left text-xl lg:text-2xl xl:text-4xl"> Cancel</i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="errorCam" class="flex w-full justify-center pb-4 text-red-600 dark:text-red-700"></div>
+            </div>
+
+            <div id="rightPanel" style="scrollbar-width:thin;"
+                class="w-full sm:w-1/3 flex flex-col overflow-y-auto pl-0 sm:pl-4">
+
+                <% if (pictures.length > 0) { %>
+
+                    <div id="pictureList" class="flex flex-row flex-wrap gap-4" tabindex="0">
+
+                        <% for (let picture of pictures) { %>
+
+                            <div class="w-full xl:w-gap-4 relative group" tabindex="0">
+                                <div
+                                    class="bg-gradient-to-t from-gray-700 dark:from-[#121212] w-full absolute inset-x-0 bottom-0 group-hover:flex group-active:flex group-focus:flex group-hover:shadow-2xl group-active:shadow-2xl group-focus:shadow-2xl justify-around rounded-xl hidden">
+                                    <a href="/gallery/<%= picture._id %>">
+                                        <button
+                                            class="py-4 px-5 rounded-full transition duration-200 hover:bg-slate-100 hover:bg-opacity-30 cursor-pointer">&#128064;
+                                        </button>
+                                    </a>
+                                    <button onclick="deletePicture(this, '<%= picture._id %>')"
+                                        class="p-4 rounded-full transition duration-200 hover:bg-slate-100 hover:bg-opacity-30 cursor-pointer">
+                                        <img src="/images/icons/trash.svg" alt="trash" height="20px" width="24px" />
+                                    </button>
+                                </div>
+                                <img class="object-scale-down rounded-xl" src="<%= picture.imgUrl %>"
+                                    alt="<%= picture.title %>" />
+                            </div>
+
+                            <% } %>
+                    </div>
+
+                    <div id="seePics" class="flex justify-center text-center items-center w-full mt-4">
+                        <a href="/managing"
+                            class="work-sans transition duration-200 w-full sm:w-auto text-gray-700 hover:text-slate-100 dark:text-violet-500 border-violet-500 bg-slate-100 hover:bg-violet-400 dark:bg-transparent dark:hover:bg-violet-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3">
+                            <i class="fa-solid fa-images text-xl xl:text-2xl 2xl:text-4xl text-center">
+                                See all my photos
+                            </i>
+                        </a>
+                    </div>
+
+                    <% } else { %>
+                        <div id="noPicture"
+                            class="flex justify-center text-center dark:text-slate-100 items-center w-full">
+                            <h1 class="work-sans">You don't have any photo yet ...</h1>
+                        </div>
+                        <% } %>
+            </div>
+        </div>
+
+        </main>
+        <script src="/js/editing/editing.js"></script>
+        <script src="/js/editing/editingCam.js"></script>
+        <script src="/js/editing/editingUpload.js"></script>
+        <script src="/js/editing/editingList.js"></script>
+        <script src="/js/editing/effect.js"></script>
+        <script src="/js/editing/moreEffect.js"></script>
+        <script src="/js/editing/extraEffect.js"></script>
+        <script src="/js/editing/effectModifier.js"></script>
+        <script src="/js/editing/effectModifierMobile.js"></script>
+        
+        <%- include('includes/footer.ejs') %>

@@ -1,0 +1,37 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <%- include('../includes/main.ejs') %>
+
+        <div class="max-h-screen/mhf sm:max-h-screen/hf h-screen/mhf sm:h-screen/hf flex flex-col justify-center items-center">
+
+            <div class="work-sans flex flex-col items-center">
+                <img class="sm:w-1/3 rounded-xl" src="/images/errors/401.gif" />
+                <h1 class="pt-4 sm:text-5xl font-bold text-gray-700 dark:text-slate-100 text-center">One last thing ...
+                </h1>
+                <p class="sm:text-4xl font-bold text-gray-700 dark:text-slate-100 text-center pt-4">You need to activate
+                    your account before to access to this area. &#128142;</p>
+                <p class="sm:text-4xl font-bold text-gray-700 dark:text-slate-100 text-center pt-4">You can do it by
+                    clicking on the link sent to your E-mail. &#128232;</p>
+                <div id="confirmStatus" class="hidden work-sans text-xl text-center text-green-600 cursor-default pt-2">
+                </div>
+            </div>
+
+            <div class="work-sans flex flex-col sm:flex-row sm:justify-evenly text-center my-8 gap-8">
+                <button onclick="reSendActivationEmail()"
+                    class="transition duration-200 work-sans sm:text-4xl text-gray-700 dark:text-cyan-500 hover:text-slate-100 border-cyan-500 bg-slate-100 hover:bg-cyan-400 dark:bg-transparent dark:hover:bg-cyan-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-2 px-8 w-full sm:w-auto">
+                    Send E-mail Again
+                </button>
+                <a href="/contact"
+                    class="transition duration-200 work-sans sm:text-4xl text-gray-700 dark:text-red-500 hover:text-slate-100 border-red-500 bg-slate-100 hover:bg-red-400 dark:bg-transparent dark:hover:bg-red-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-2 px-8 w-full sm:w-auto">
+                    Ask for Help
+                </a>
+            </div>
+
+        </div>
+
+        </main>
+
+        <script src="/js/signup.js"></script>
+
+        <%- include('../includes/footer.ejs') %>

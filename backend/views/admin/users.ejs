@@ -1,0 +1,58 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <%- include('../includes/main.ejs') %>
+
+        <div class="h-screen/mhf sm:h-screen/hf overflow-y-auto" style="scrollbar-width:thin;">
+
+            <% if (users.length> 0) { %>
+
+                <div id="userList" class="flex items-center justify-center flex-row flex-wrap gap-4">
+
+                    <% for (let user of users) { %>
+
+                        <div class="grow flex justify-center group" tabindex="0">
+                            <div class="w-fit relative bg-slate-100 dark:bg-zinc-900 hover:shadow-2xl active:shadow-2xl focus:shadow-2xl p-4 rounded-xl">
+                                <div
+                                    class="bg-gradient-to-t from-gray-700 dark:from-[#121212] absolute left-0 right-0 bottom-0 group-hover:flex group-active:flex group-focus:flex group-hover:shadow-2xl group-active:shadow-2xl group-focus:shadow-2xl justify-around rounded-xl hidden">
+                                    <a href="/admin/user/<%= user._id %>">
+                                        <button
+                                            class="py-4 px-5 rounded-full transition duration-200 hover:bg-slate-100 hover:bg-opacity-30 cursor-pointer">&#128295;
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="flex justify-center">
+                                    <img src="/images/errors/noavatar.jpg" alt="User Avatar" class="rounded-xl" />
+                                </div>
+                                <div class="dark:text-slate-100">
+                                    <div><span class="font-bold">Identifier:</span> <%= user._id %>
+                                    </div>
+                                    <div><span class="font-bold">Email:</span> <%= user.email %>
+                                    </div>
+                                    <div><span class="font-bold">Username:</span> <%= user.username %>
+                                    </div>
+                                    <div><span class="font-bold">Date:</span> <%= user.admin.date.toDateString() %>
+                                    </div>
+                                    <div><span class="font-bold">Enabled:</span> <%= user.admin.enabled %>
+                                    </div>
+                                    <div><span class="font-bold">Level:</span> <%= user.admin.level %>
+                                    </div>
+                                    <div><span class="font-bold">role:</span> <%= user.admin.role %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <% } %>
+                </div>
+
+                <% } else { %>
+                    <div id="noUser" class="flex flex-col justify-center text-center dark:text-slate-100 items-center w-full sm:pl-4">
+                        <h1 class="work-sans p-8">There is no user yet ...</h1>
+                    </div>
+                    <% } %>
+
+        </div>
+        </main>
+
+        <%- include('../includes/footer.ejs') %>

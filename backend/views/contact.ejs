@@ -1,0 +1,71 @@
+<%- include('includes/head.ejs') %>
+    </head>
+
+    <%- include('includes/main.ejs') %>
+
+        <div
+            class="max-h-screen/mhf sm:max-h-screen/hf h-screen/mhf sm:h-screen/hf overflow-y-scroll overflow-x-hidden flex flex-col sm:justify-center items-center">
+
+            <div id="error" class="hidden work-sans text-xl text-center text-red-600 cursor-default"></div>
+            <div class="relative border border-double dark:border-slate-700 w-full sm:w-[38rem] rounded-3xl m-4">
+                <div class="relative border border-double dark:border-slate-700 w-auto rounded-2xl m-2">
+
+                    <div class="absolute top-3 right-3 border dark:border-slate-700 w-10 h-10 rounded-full"></div>
+
+                    <form id="form" action="#" method="POST" onsubmit="sendMessage(); return false" class="flex flex-col items-center gap-8 p-8">
+
+                        <div
+                            class="work-sans text-xl flex flex-col text-center text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 items-center w-full sm:w-auto">
+                            <label for="email" class="transition duration-200">My E-mail</label>
+                            <input type="email" name="email" id="email"
+                                placeholder="<%= user ? user.email : 'someone@example.com' %>"
+                                autocomplete="email"
+                                value="<%= user ? user.email : '' %>"
+                                required
+                                class="transition duration-200 border dark:border-slate-700 focus:transition-none focus:border-blue-500 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-500 hover:text-black dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 rounded-xl text-center w-full sm:w-auto" />
+                        </div>
+
+                        <div
+                            class="work-sans text-xl text-center text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100  flex flex-col items-center w-full sm:w-auto">
+                            <label for="subject" class="transition duration-200">Subject</i></label>
+                            <select required name="subject" id="subject"
+                                class="transition duration-200 cursor-pointer border dark:border-slate-700 rounded-xl text-center dark:hover:text-slate-100 bg-slate-100 dark:bg-zinc-900 focus:transition-none focus:border-blue-500 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-500 px-4 py-2 w-full sm:w-auto">
+                                <option selected disabled value="">Choose a subject</option>
+                                <option value="Moderation">Moderation</option>
+                                <option value="Subscription">Subscription & Activation</option>
+                                <option value="Login">Login</option>
+                                <option value="Account">Account Data</option>
+                                <option value="Technical">Technical Issue</option>
+                                <option value="Public">Public Relation</option>
+                                <option value="Legal">Legal Request</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div
+                            class="work-sans text-xl text-gray-700 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-center items-center w-full">
+                            <label for="message" class="transition duration-200">How can we help you ?</label>
+                            <textarea name="message" id="message" placeholder="Write your message here." required
+                                class="transition duration-200 border dark:border-slate-700 focus:transition-none focus:border-blue-500 dark:focus:border-blue-500 focus:ring focus:outline outline-blue-500 bg-slate-100 dark:bg-zinc-900 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 dark:focus-within:text-slate-100 dark:placeholder:text-slate-700 rounded-xl text-justify whitespace-pre-line w-full h-64 p-4"></textarea>
+                        </div>
+
+                        <button onclick="sendMessage(); return false"
+                            class="transition duration-200 work-sans text-xl text-gray-700 hover:text-slate-100 dark:text-blue-500 border-blue-500 bg-slate-100 hover:bg-blue-400 dark:bg-transparent dark:hover:bg-blue-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-2 px-8 w-full sm:w-auto">
+                            Send Message
+                        </button>
+                    </form>
+
+                    <div id="finish"
+                        class="work-sans flex-col justify-center text-center items-center w-full text-gray-700 dark:text-slate-500 sm:pl-4 hidden">
+                        <h1 class="p-4">Your message has been sent successfully !</h1>
+                        <h1 class="p-4"> We apologize for the inconvenient, you will get a response soon.<br>Thank you
+                            for your patience.</h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </main>
+        <script src="/js/contact.js"></script>
+
+        <%- include('includes/footer.ejs') %>

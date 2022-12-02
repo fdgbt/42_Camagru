@@ -1,0 +1,115 @@
+<header class="sticky top-0 z-50 bg-slate-100 dark:bg-zinc-900 h-16 w-full">
+    <nav>
+        <ul
+            class="dancing-script text-3xl flex flex-row justify-between items-center text-gray-700 dark:text-slate-600 whitespace-nowrap h-16">
+            <div id="mobile-menu" class="sm:hidden cursor-pointer pl-4">
+                <i onclick="toggleMobileNav()" class="fa fa-bars hover:text-black dark:hover:text-slate-200 active:text-black cursor-pointer"></i>
+            </div>
+            <div id="desktop-menu" class="sm:flex hidden w-[340px]">
+                <li class="active:translate-y-2">
+                    <a class="no-underline hover:text-black dark:hover:text-slate-200 hover:underline px-6 py-4<%= path === 'index' ? ' text-black dark:text-slate-200' : '' %>"
+                        href="/gallery">
+                        Gallery
+                    </a>
+                </li>
+                <li class="active:translate-y-2">
+                    <a class="no-underline hover:text-black dark:hover:text-slate-200 hover:underline px-6 py-4<%= path === 'editing' ? ' text-black dark:text-slate-200' : '' %>"
+                        href="/editing">
+                        Photo Shooting
+                    </a>
+                </li>
+            </div>
+
+            <li id="logo-menu" class="flex items-center">
+                <a class="px-4 py-2 active:translate-y-2" href="<%= path === 'index' ? '/editing' : '/' %>">
+                    <img src="/images/icons/favicon/favicon.ico" title="Camagru" alt="Camagru" />
+                </a>
+                <a class="inspiration font-semibold text-5xl no-underline text-black active:translate-y-2"
+                    href="<%= path === 'index' ? '/editing' : '/' %>">
+                    <div class="lg:flex hidden">Camagru</div>
+                </a>
+            </li>
+
+            <div id="desktop-user-menu" class="sm:flex hidden w-[340px] justify-end">
+
+                <% if (authenticated) { %>
+
+                    <li class="active:translate-y-2">
+                        <a class="no-underline hover:text-black dark:hover:text-slate-200 hover:underline py-4 px-6<%= path === 'account' ? ' text-black dark:text-slate-200' : '' %>"
+                            href="/account">
+                            My Account
+                        </a>
+                    </li>
+                    <li class="active:translate-y-2">
+                        <div class="no-underline hover:text-black dark:hover:text-slate-200 px-6">
+                            <button onclick="logout()" class="hover:underline">
+                                Log Out
+                            </button>
+                        </div>
+                    </li>
+
+                    <% } else { %>
+
+                        <li class="active:translate-y-2">
+                            <a class="no-underline hover:text-black dark:hover:text-slate-200 hover:underline py-4 px-6<%= path === 'login' ? ' text-black dark:text-slate-200' : '' %>"
+                                href="/login">
+                                Login
+                            </a>
+                        </li>
+                        <li class="active:translate-y-2">
+                            <a class="no-underline hover:text-black dark:hover:text-slate-200 hover:underline py-4 px-6<%= path === 'signup' ? ' text-black dark:text-slate-200' : '' %>"
+                                href="/signup">
+                                Sign Up
+                            </a>
+                        </li>
+
+                        <% } %>
+            </div>
+            <div id="mobile-user-menu" class="sm:hidden pr-4">
+                <i onclick="toggleMobileNav()" class="fa fa-user hover:text-black dark:hover:text-slate-200 active:text-black cursor-pointer"></i>
+            </div>
+        </ul>
+    </nav>
+    <nav id="mobileNav" class="hidden sm:hidden sticky top-0 z-50 bg-slate-100 dark:bg-zinc-900 h-fit w-full pb-2">
+        <ul class="flex flex-col w-full dancing-script text-2xl text-gray-700">
+            <li class="flex flex-wrap justify-between">
+                <a class="active:translate-y-2 no-underline hover:text-black dark:hover:text-slate-200 hover:underline px-6 <%= path === 'index' ? ' text-black dark:text-slate-200' : '' %>"
+                    href="/gallery">
+                    Gallery
+                </a>
+                <% if (authenticated) { %>
+                    <a class="active:translate-y-2 no-underline hover:text-black dark:hover:text-slate-200 hover:underline px-6 <%= path === 'account' ? ' text-black dark:text-slate-200' : '' %>"
+                        href="/account">
+                        Account
+                    </a>
+                    <% } else { %>
+                        <a class="active:translate-y-2 no-underline hover:text-black dark:hover:text-slate-200 hover:underline px-6 <%= path === 'login' ? ' text-black dark:text-slate-200' : '' %>"
+                            href="/login">
+                            Login
+                        </a>
+                    <% } %>
+            </li>
+            <li class="flex flex-wrap justify-between">
+                <a class="active:translate-y-2 no-underline hover:text-black dark:hover:text-slate-200 hover:underline px-6 <%= path === 'editing' ? ' text-black dark:text-slate-200' : '' %>"
+                    href="/editing">
+                    Shooting
+                </a>
+                <% if (authenticated) { %>
+                    <div onclick="logout()"
+                        class="active:translate-y-2 no-underline hover:text-black dark:hover:text-slate-200 px-6">
+                        <button class="hover:underline">
+                            Log Out
+                        </button>
+                    </div>
+                    <% } else { %>
+                        <a class="active:translate-y-2 no-underline hover:text-black hover:underline px-6<%= path === 'signup' ? ' text-black ' : '' %>"
+                            href="/signup">
+                            Sign Up
+                        </a>
+                        <% } %>
+            </li>
+        </ul>
+    </nav>
+    <input type="hidden" name="_csrf" id="csrf" value="<%= csrfToken %>" />
+</header>
+<script src="/js/header.js"></script>

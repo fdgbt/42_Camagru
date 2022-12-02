@@ -1,0 +1,45 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <%- include('../includes/main.ejs') %>
+
+        <div class="h-screen/mhf sm:h-screen/hf overflow-y-auto"
+            style="scrollbar-width:thin;">
+
+            <% if (pictures.length > 0) { %>
+
+                <div id="pictureList" class="flex items-center justify-center flex-row-reverse flex-wrap-reverse gap-4">
+
+                    <% for (let picture of pictures) { %>
+
+                    <div class="w-full sm:w-[32.5%] grow-0 flex justify-center hover:shadow-2xl active:shadow-2xl focus:shadow-2xl relative group "
+                        tabindex="0">
+                        <div
+                            class="bg-gradient-to-t from-gray-700 dark:from-[#121212] absolute left-0 right-0 bottom-0 group-hover:flex group-active:flex group-focus:flex group-hover:shadow-2xl group-active:shadow-2xl group-focus:shadow-2xl justify-around rounded-xl hidden">
+                            <a href="/admin/gallery/<%= picture._id %>">
+                                <button
+                                    class="py-4 px-5 rounded-full transition duration-200 hover:bg-slate-100 hover:bg-opacity-30 cursor-pointer">&#128064;
+                                </button>
+                            </a>
+                            <button onclick="adminDeletePicture(this, '<%=picture._id%>')"
+                                class="p-4 rounded-full transition duration-200 hover:bg-slate-100 hover:bg-opacity-30 cursor-pointer">
+                                <img src="/images/icons/trash.svg" alt="trash" height="20px" width="24px" />
+                            </button>
+                        </div>
+                        <img src="<%= picture.imgUrl %>" alt="<%= picture.title %>" class="rounded-xl" />
+                    </div>
+
+                    <% } %>
+                </div>
+
+            <% } else { %>
+                <div id="noPicture" class="flex flex-col justify-center text-center dark:text-slate-100 items-center w-full sm:pl-4">
+                    <h1 class="work-sans p-8">This user does not have any photo yet ...</h1>
+                </div>
+            <% } %>
+
+        </div>
+        </main>
+        <script src="/js/managing.js"></script>
+
+        <%- include('../includes/footer.ejs') %>

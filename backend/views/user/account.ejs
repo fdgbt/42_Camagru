@@ -1,0 +1,72 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <%- include('../includes/main.ejs') %>
+
+        <div class="max-h-screen/mhf sm:max-h-screen/hf h-screen/mhf sm:h-screen/hf flex flex-col justify-center items-center">
+            <div class="flex flex-col gap-4 justify-center text-center items-center w-full sm:pl-4">
+
+                <p class="work-sans text-3xl font-bold dark:text-slate-100">
+                    <%= user.username %>
+                </p>
+
+                <a href="/contact"
+                    class="work-sans transition duration-200 w-full sm:w-auto text-gray-700 dark:text-rose-500 hover:text-slate-100 dark:hover:text-slate-100 border-rose-500 bg-slate-100 hover:bg-rose-400 dark:bg-transparent dark:hover:bg-rose-400 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3">
+                    <i class="fa-solid fa-star-of-life text-xl xl:text-2xl 2xl:text-4xl text-center">
+                        Help
+                    </i>
+                </a>
+
+                <a href="/settings"
+                    class="work-sans transition duration-200 w-full sm:w-auto text-gray-700 dark:text-fuchsia-500 hover:text-slate-100 dark:hover:text-slate-100 border-fuchsia-500 bg-slate-100 hover:bg-fuchsia-400 dark:bg-transparent dark:hover:bg-fuchsia-400 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3">
+                    <i class="fa-solid fa-screwdriver-wrench text-xl xl:text-2xl 2xl:text-4xl text-center">
+                        Settings
+                    </i>
+                </a>
+                <a href="/statistics"
+                    class="work-sans transition duration-200 w-full sm:w-auto text-gray-700 dark:text-purple-500 hover:text-slate-100 dark:hover:text-slate-100 border-purple-500 bg-slate-100 hover:bg-purple-400 dark:bg-transparent dark:hover:bg-purple-400 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3">
+                    <i class="fa-solid fa-percent text-xl xl:text-2xl 2xl:text-4xl text-center">
+                        Statistics
+                    </i>
+                </a>
+                <a href="/managing"
+                    class="work-sans transition duration-200 w-full sm:w-auto text-gray-700 dark:text-violet-500 hover:text-slate-100 dark:hover:text-slate-100 border-violet-500 bg-slate-100 hover:bg-violet-400 dark:bg-transparent dark:hover:bg-violet-400 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3">
+                    <i class="fa-solid fa-images text-xl xl:text-2xl 2xl:text-4xl text-center">
+                        See all my photos
+                    </i>
+                </a>
+
+                <div class="hidden border-amber-500 hover:bg-amber-400"></div>
+                <div class="hidden border-indigo-500 hover:bg-indigo-400"></div>
+                <button id="switchModeButton" onclick="switchMode()"
+                    class="work-sans transition-none duration-0 w-full sm:w-auto text-gray-700 dark:text-amber-500 hover:text-slate-100 dark:hover:text-slate-100 bg-slate-100 dark:bg-transparent dark:hover:bg-amber-400 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3">
+                </button>
+
+                <% if (role==="Moderator" || role==="Administrator" ) { %>
+                    <a href="/admin/managing"
+                        class="work-sans transition duration-200 w-full sm:w-auto text-gray-700 dark:text-orange-500 hover:text-slate-100 dark:hover:text-slate-100 border-orange-500 bg-slate-100 hover:bg-orange-400 dark:bg-transparent dark:hover:bg-orange-400 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3">
+                        <i class="fa-solid fa-chess-queen text-xl xl:text-2xl 2xl:text-4xl text-center">
+                            Moderation
+                        </i>
+                    </a>
+                    <% } if (role==="Administrator" ) { %>
+                        <a href="/admin/statistics"
+                            class="work-sans transition duration-200 w-full sm:w-auto text-gray-700 dark:text-red-500 hover:text-slate-100 dark:hover:text-slate-100 border-red-500 bg-slate-100 hover:bg-red-400 dark:bg-transparent dark:hover:bg-red-400 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3">
+                            <i class="fa-solid fa-chess-king text-xl xl:text-2xl 2xl:text-4xl text-center">
+                                Administration
+                            </i>
+                        </a>
+                        <% } %>
+
+                            <button id="resetModeButton" onclick="resetMode()"
+                                class="hidden work-sans transition-none duration-0 w-full sm:w-auto text-gray-700 dark:text-gray-500 hover:text-slate-100 dark:hover:text-slate-100 border-gray-500 bg-slate-100 hover:bg-gray-400 dark:bg-transparent dark:hover:bg-gray-400 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-3">
+                                <i class="fa-solid fa-star text-xl xl:text-2xl 2xl:text-4xl text-center">
+                                    Set the Default Mode
+                                </i>
+                            </button>
+            </div>
+        </div>
+        </main>
+        <script src="/js/account.js"></script>
+
+        <%- include('../includes/footer.ejs') %>

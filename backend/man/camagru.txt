@@ -1,0 +1,284 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    camagru.txt                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fdagbert <fdagbert@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/07/16 12:38:02 by fdagbert          #+#    #+#              #
+#    Updated: 2022/09/21 22:48:17 by fdagbert         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+*** PREREQUISITE ***
+
+-> Download the source code.
+
+-> Install Docker on your host machine (available for Win/MacOs/Linux).
+
+   https://www.docker.com
+
+-> Have access to a terminal on your host machine to execute the commands below.
+
+
+*** USAGE / INSTALL / START ***
+
+-> Go to the Camagru root folder and execute the command "docker-compose up" to install and start the web server.
+
+   Alternatively, execute "docker-compose up -d" for detached mode.
+
+-> Open your web browser (Firefox / Chromium is recommended) and go to "http://localhost:3000".
+
+   Note that if port 3000 is already used, it can be changed in the "docker-compose.yaml" file located in the camagru root folder.
+
+
+*** STOP ***
+
+-> In the console used to start the web server, press together the keys [CTRL] + [C] on keyboard.
+
+   In detached mode, go to the Camagru root folder and execute "docker-compose down".
+
+   Note that the user's data remains persistent while the container (containing the web server) is stopped.
+   You still can start again the web server at any time, using "docker-compose up" in the camagru root folder.
+
+
+*** UNINSTALL ***
+
+-> Go to the Camagru root folder and execute the command "docker-compose down -v".
+
+   At this point, the container "camagru_nodejs" is stopped and deleted.
+   You can use the commande "docker ps -a" to verify.
+
+-> Then, execute the command "docker image prune -a". Confirm the action by typing 'y'.
+
+   At this point, the image "camagru_backend" is deleted.
+   The image "node" is also deleted if not used by any other container.
+   You can use the commande "docker images" to verify.
+
+-> Finally, execute the command "docker volume prune". Confirm the action by typing 'y'.
+
+   At this point, the volume associated with "backend" folder is deleted.
+   You can use the commande "docker volume ls" to verify.
+
+-> Optionnally, execute the command "docker network prune". Confirm the action by typing 'y'.
+
+   As there is no Docker network managed in this project, this command is not necessary.
+   You can use the commande "docker network ls" to verify.
+   Note that "bridge", "host" and "none" networks are Docker default networks.
+
+The Camagru project is now uninstalled completely.
+Note that you still can reinstall completely the project at any time, executing "docker-compose up" in the camagru root folder.
+
+
+*** FINAL CLEAN ***
+
+You can do the following steps to remove any trace of this project.
+
+-> Delete completely the camagru root folder.
+
+   This is the folder containing the "backend" source code and the "docker-compose.yaml" file.
+   At this point you will need to download the source code again to reinstall this project.
+
+-> Uninstall Docker from your host machine.
+
+   Uninstall the program following the classic way, depending on your OS (Win/MacOs/Linux).
+   Note that you can need Docker installed on your host machine for further projects.
+
+
+*** SCRIPTS ***
+
+- Clean the database.
+
+   While the container "camagru_nodejs" is running, execute the command "npm run camagru:clean:db".
+
+- Populate the database.
+
+   While the container "camagru_nodejs" is running, execute the command "npm run camagru:seed:db".
+   Note that if the database is not clean, this action will be canceled.
+
+- Populate the database (FORCED).
+
+   Warning: This action will first completely erase the database. This action is irreversible.
+   While the container "camagru_nodejs" is running, execute the command "npm run camagru:force:db".
+
+- Clean the data folder
+
+   Warning: The data folder contains physically all the pictures created and uploaded by users. This action is irreversible.
+   Go to the "backend" folder, then execute the command "npm run clean:data".
+
+- Clean the logs file
+
+   Warning: The logs file contains all history about database updates, error messages, etc. This action is irreversible.
+   Go to the "backend" folder, then execute the command "npm run clean:logs".
+
+- Regenerate the CSS file and minify it.
+
+   Go to the "backend" folder, then execute the command "npm run build:css".
+
+- Auto-regenerate the CSS file after each change in the source code.
+
+   Warning: This is usefull only for development purpose.
+   Go to the "backend" folder, then execute the command "npm run watch:css".
+   Note that the CSS file will not be minified.
+
+- Auto-restart the web server after each change in the source code.
+
+   Warning: This is usefull only for development purpose.
+   Go to the "backend" folder, then open the "Dockerfile" file.
+   Finally, at line 17, change "start" for "start:dev".
+
+- Update all the dependencies version.
+
+   Warning: In some case, this action can add security breach in the web server.
+            Do not start the web server (i.e. "camagru_nodejs" container) if there is vulnerabilities detected during the image creation process.
+            Also, this action can add new conflicts between the dependencies and have the effect to break the image creation process during the installation part.
+   Go to the "backend" folder, then execute the command "npm run update".
+   
+
+*** TIPS ***
+
+- Enable / Disable the Dark Mode.
+   
+   By default, the Dark Mode is automatically enabled in the browser preferences or with the browser theme. Browser theme can also be managed dynamically by the OS.
+   The Dark Mode can be enabled or disabled manually in the account settings (the user need to be logged).
+
+- Enable the hidden special effects.
+
+   In editing mode (Photo Shooting), instead selecting an "extra effect", user can click on the "photo-film" logo of this select button.
+   This will have effect to show the hidden select button with "special effect".
+   Note that only one extra effect OR only one special effect can be enabled at a time.
+   If a special effect is selected, extra effect are automatically disabled.
+   There is no preview available for special effects.
+
+- Access the contact form from anywhere.
+
+   You can access the contact form by clicking on the "Fdagbert" text, inside the footer, at the bottom of the page.
+   Note that the contact form is also available from the account settings.
+
+- Switch from infinite-scroll to traditional paginated gallery.
+
+   By default, the gallery use infinite-loading by scrolling.
+   On the right panel of the "Gallery", You can access the classic paginated gallery by clicking on the page numbers.
+   The current setting is 5 pictures per page.
+
+- See all pictures of specified user.
+
+   In the comment area of a picture, click on the username of a comment to access a special gallery containing exclusively the picture posted by this user.
+   You can also click on the username of the picture owner (in the area "posted by [username]") to access the same page.
+   Note that only public pictures of this user is available in the gallery.
+
+- Set the picture visibility to "private" by default.
+
+   The visibility default preference can be changed in the user settings.
+   This will affect only new pictures posted or uploaded by the user.
+   Old pictures can be switched independantly, without limitation and at any time to "Private" or "Public" in the picture settings.
+
+- Like and comment a picture.
+
+   In the Gallery, click on the picture to bring up the "Like" and "Comment" buttons in the picture corner.
+
+- Access the picture settings.
+
+   Firstly, go to the picture dedicated page as you would do to comment it.
+   If you are the picture's owner, clicking on the picture will bring up a flat key button in the picture corner (in addition with the "Like" and "Comment" button).
+
+- Delete all pictures and comments.
+
+   Deleting your account in the account settings will automatically erase all your pictures hosted on our server.
+   This action is irreversible, there is no back up.
+   All comments associated to your pictures will be wiped.
+   Your comments associated to pictures of other users will stay visible, but "Anonymous" will replace your username.
+
+- Stop to receive mails from Camagru.
+
+   A mail can be sent automatically for new comments, new likes and new ranks.
+   These preferences can be changed independantly in the account settings.
+
+   Mails are also used to validate the inscription of new users.
+   In the case that your address is spammed with illegitimate mails subscription, please contact the admins as soon as possible.
+
+- Get special ranks.
+
+   When one of your picture reach a certain amount of likes, your account rank will be automatically increased.
+
+   There are 8 special ranks : Bronze, Silver, Gold, Platinum, Titanium, Palladium, Diamond, Antimatter.
+   User rank upgrades are permanent. There is no downgrade if rank conditions are no longuer present.
+   There is currently no special benefits for highest rank users.
+
+- Big brother is watching you.
+
+   Moderators have access to a special gallery. 
+   In this gallery they can see, edit and delete absolutely all pictures posted and uploaded by users.
+   Please notice that this also include all "Private" pictures and comments.
+
+   Administrators have the same privilege than Moderators, but can also edit or banish the user itself.
+
+   User sensitive informations, as their personal password, are encrypted and can not be decrypted by any Authors, Administrators, Moderators nor Hackers.
+   You absolutely must use a (very) strong password for this protection be efficient.
+
+   Your account can be deleted completely without notice if any abuse is reported.
+   
+   In case of personal harassment or personal image rights, please contact the moderation team / admins as soon as possible.
+   We may have to share details with law enforcement if complaints are filled.
+   This include the use or host of copyrighted content.
+
+
+*** TROUBLESHOOTING ***
+
+- The Web Server failed to connect to the database.
+
+   The database is hosted on cloud and for security reason, its access is protected by IP (at least).
+   Please, contact the author to add your IP address in the white list.
+
+- There is the error "User with Administrator role missing" in the contact form.
+
+   Contact form are sent to all admin email addresses but there is currently no one user with Administrator role in the database.
+   Note that you can "populate" the database to add a preconfigured administrator with a valid email.
+
+- I need to change my Password.
+
+   There is two ways to change your account password.
+      
+      -> If you remember your actual password : 
+         - Login
+         - Go to the account settings.
+         - Enter the new password you want to use in the first password field.
+         - Enter your actual password in the second password field to validate the change.
+         - Click on "Save".
+
+      -> If you forgot your actual password :
+         - Loggout if still authenticated.
+         - Go to the "Login" page and click on "Reset my Password".
+         - Enter the email address associated to your account.
+         - Click on the link you received by mail.
+
+- I forgot my Username.
+
+   -> If you remember the mail address associated to your account :
+      - You can follow the classic reset password process.
+         Indeed, the mail that you will receive also contains your username.   
+         You can now login with you actual password.
+         
+         There is no problem if you don't complete password reset process.
+         Indeed, the reset link will be expired after 10 minutes.
+
+   -> If you don't remember the mail address associated to your account :
+      - Please contact the administrator team.
+
+- I forgot or lost access to the email associated to my account.
+
+   Warning : 
+      Change your email will automatically lock your account.
+      In all case, you will need to unlock your account by clicking on the link sent to the new email.
+
+   -> If you remember your username and actual password : 
+      - Login
+      - Go to the account settings.
+      - Change your email address.
+      - Click on "Save".      
+
+   -> If you forgot your actual password or username :
+      - Please contact the administrator team.
+
+- For other issue or additionnal request, please contact the support team (see "author" file).

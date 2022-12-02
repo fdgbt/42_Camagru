@@ -1,0 +1,27 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <%- include('../includes/main.ejs') %>
+
+        <div>
+            <div class="work-sans flex flex-col gap-4 justify-center text-center items-center w-full sm:pl-4 dark:text-slate-100">
+                
+                <p class="text-2xl font-bold"><%= user.username %></p>
+                <div><div class="font-bold">Rank</div><%= user.admin.level %></div>
+
+                <p>
+                    <div><div class="font-bold">Photos posted</div><%= picsNumber %></div>
+                    <div><div class="font-bold">Likes received</div><%= likesNumber %></div>
+                    <div><div class="font-bold">Comments received</div><%= commentsNumber %></div>
+                </p>
+
+                <p>
+                    <div><div class="font-bold">Role</div><%= user.admin.role %></div>
+                    <div><div class="font-bold">Registration</div><%= user.admin.date %></div>
+                    <div><div class="font-bold">Identifier</div><%= user._id %></div>
+                </p>
+            </div>
+        </div>
+        </main>
+
+        <%- include('../includes/footer.ejs') %>

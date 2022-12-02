@@ -1,0 +1,69 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <%- include('../includes/main.ejs') %>
+
+        <div
+            class="max-h-screen/mhf sm:max-h-screen/hf h-screen/mhf sm:h-screen/hf min-h-full overflow-y-scroll overflow-x-hidden flex flex-col sm:justify-center items-center">
+
+            <div id="error" class="hidden work-sans text-xl text-center text-red-600 cursor-default"></div>
+            <div class="relative border border-double dark:border-slate-700 w-full sm:w-96 rounded-3xl m-4">
+                <div class="relative border border-double dark:border-slate-700 w-auto rounded-2xl m-2">
+
+                    <div
+                        class="absolute top-3 right-3 border border-double dark:border-slate-700 w-10 h-10 rounded-full">
+                    </div>
+                    <div
+                        class="invisible sm:visible opacity-60 absolute top-[4.5rem] left-[2.9rem] border dark:border-slate-700 w-[16.9rem] h-[16.9rem] rounded-full">
+                    </div>
+                    <div
+                        class="invisible sm:visible opacity-60 absolute top-[5.1rem] left-[3.5rem] border dark:border-slate-700 w-[15.7rem] h-[15.7rem] rounded-full">
+                    </div>
+
+                    <form action="#" method="POST" onsubmit="setPicSettings('<%= admin %>', '<%= picture._id %>'); return false"
+                        class="flex flex-col items-center gap-8 p-8" method="POST">
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-center items-center w-full sm:w-auto z-10">
+
+                            <label for="title" class="transition duration-200">Title</label>
+                            <input type="text" name="title" id="title" placeholder="<%= picture.title %>"
+                                value="<%= picture.title %>" autocomplete="title" required
+                                class="transition duration-200 border dark:border-slate-700 focus:transition-none focus:border-blue-400 dark:focus:border-blue-400 focus:ring focus:outline outline-blue-400 hover:text-black dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 rounded-xl text-center w-full sm:w-auto" />
+                        </div>
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-center items-center w-full sm:w-auto z-10">
+
+                            <label for="description" class="transition duration-200">Description</label>
+                            <textarea name="description" id="description" placeholder="<%= picture.description %>"
+                                required
+                                class="transition duration-200 border dark:border-slate-700 focus:transition-none focus:border-blue-400 dark:focus:border-blue-400 focus:ring focus:outline outline-blue-400 hover:text-black dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 rounded-xl text-center w-full sm:w-auto"><%= picture.description %></textarea>
+                        </div>
+                        <div
+                            class="work-sans text-xl text-gray-700 dark:text-slate-500 hover:text-black dark:hover:text-slate-100 focus-within:text-black dark:focus-within:text-slate-100 flex flex-col text-center items-center w-full sm:w-auto z-10">
+                            <label for="visible" class="transition duration-200">Visibility</i></label>
+                            <select required name="visibility" id="visibility"
+                                class="transition duration-200 cursor-pointer text-center rounded-xl group-hover:bg-blue-400 border dark:border-slate-700 dark:hover:text-slate-100 dark:placeholder:text-slate-700 bg-slate-100 dark:bg-zinc-900 focus:transition-none focus:border-blue-400 dark:focus:border-blue-400 focus:ring focus:outline outline-blue-400 px-4 py-2">
+                                <option value="public" <%=picture.visible==='public' ? 'selected' : '' %>
+                                    class="text-left">Public</option>
+                                <option value="private" <%=picture.visible==='private' ? 'selected' : '' %>
+                                    class="text-left">Private</option>
+                            </select>
+                        </div>
+
+                        <button onclick="setPicSettings('<%= admin %>', '<%= picture._id %>'); return false"
+                            class="transition duration-200 work-sans text-xl text-gray-700 dark:text-blue-500 hover:text-slate-100 border-blue-500 bg-slate-100 hover:bg-blue-400 dark:bg-transparent dark:hover:bg-blue-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-2 px-8 w-full sm:w-auto z-10">
+                            Save
+                        </button>
+                    </form>
+                    <div class="flex flex-col items-center pb-8 px-8">
+                        <button onclick="deletePicture('<%= admin %>', '<%= picture._id %>'); return false"
+                            class="transition duration-200 work-sans text-xl text-gray-700 dark:text-red-500 hover:text-slate-100 border-red-500 bg-slate-100 hover:bg-red-400 dark:bg-transparent dark:hover:bg-red-400 dark:hover:text-slate-100 hover:shadow-2xl active:shadow-2xl active:translate-y-2 border-2 rounded-full p-2 px-8 w-full sm:w-auto z-10">
+                            Delete Photo
+                        </button>
+                    </div>
+                </div>
+            </div>
+            </main>
+            <script src="/js/pictureSetting.js"></script>
+
+            <%- include('../includes/footer.ejs') %>
