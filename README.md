@@ -40,7 +40,7 @@ docker volume prune
 Open a web browser then go to: http://localhost:3000
 
 ## MAN (complete user manual)
-The "man" folder can be found in the "backend" folder.  
+The man can be found in the "backend" folder.  
 
 ## Screenshots
 
