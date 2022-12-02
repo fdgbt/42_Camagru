@@ -7,6 +7,23 @@ This project aims to create a small Instagram-like site allowing users to create
 
 ## Technical Stack
 
+Front-End: 
+- HTML
+- TailwindCSS Framework
+- Javascript vanilla
+
+Back-End:
+- NodeJS
+- Express
+- EJS Template Engine
+
+DataBase:
+- MongoDB Atlas (NoSQL - Cloud)
+- ODM FREE (NO Mongoose)
+
+Containerisation:
+- Docker
+
 ## Docker
 This project use Docker for containerisation.  
 Docker need to be installed on your system: https://www.docker.com/  
