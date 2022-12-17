@@ -22,7 +22,7 @@ Create a website from scratch, reproduzing the concept of the famous app in a si
 - There is a pagination constraint for the Gallery page and a defined layout for the Editing page.  
 - The design for other parts of the website is completely free.  
 - No one back-end framework is authorized for this project. Exception has been made for Express as it can be considered a micro-framework.  
-- No one front-end framework is authorized for this project. Exception has been made for the use of a CSS Framework (TailwindCSS in our case).  
+- No one front-end framework is authorized for this project. Exception has been made for the use of a CSS Framework (TailwindCSS in my case).  
 - The choice of the database is completely free. ORM/ODM are not allowed for this project.  
 
 ## Technical Stack
