@@ -41,8 +41,7 @@ Back-End:
 - EJS Template Engine
 
 DataBase:
-- MongoDB Atlas (NoSQL - Cloud)
-- ODM FREE (NO Mongoose)
+- MongoDB Atlas (NoSQL - Cloud database)
 
 Containerisation:
 - Docker
