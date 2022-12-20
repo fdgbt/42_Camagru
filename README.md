@@ -4,6 +4,7 @@ This project aims to create a small Instagram-like site allowing users to create
 ## Expected Result
 Create a website from scratch, reproduzing the concept of the famous app in a simplified version.  
 ![0e8c57af3170411681c65c0a9572daf8](https://user-images.githubusercontent.com/52746061/205192190-aa374336-2588-4912-859c-42125d200416.jpg)  
+![Feed-por-ordem-cronologica](https://user-images.githubusercontent.com/52746061/205190718-b47a1c93-b13a-4201-afb4-285faad6ee9d.jpg)  
 
 - Users must create an account with a valid email, a password and a username of their choice.  
 
@@ -13,17 +14,15 @@ Create a website from scratch, reproduzing the concept of the famous app in a si
 - The final picture must be created serverside.
 
 - All the user's photos are displayed in the homepage, also called "Gallery".
-![Feed-por-ordem-cronologica](https://user-images.githubusercontent.com/52746061/205190718-b47a1c93-b13a-4201-afb4-285faad6ee9d.jpg)
 
 - Users can also like and comment the photos !  
-- A lot of bonus functionalities has been added to the scope of the initial project. They are all described in the man file.  
-
 - The website must be completely responsive.  
 - There is a pagination constraint for the Gallery page and a defined layout for the Editing page.  
 - The design for other parts of the website is completely free.  
 - No one back-end framework is authorized for this project. Exception has been made for Express as it can be considered a micro-framework.  
 - No one front-end framework is authorized for this project. Exception has been made for the use of a CSS Framework (TailwindCSS in my case).  
 - The choice of the database is completely free. ORM/ODM are not allowed for this project.  
+- As usual, a lot of bonus functionalities has been added to the scope of the initial project. They are all described in the man file.  
 
 ## Technical Stack
 
