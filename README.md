@@ -1,5 +1,5 @@
 # 42_Camagru
-This project aims to create a small Instagram-like site allowing users to create and share photo-montages.
+This project aims to create a small Instagram-like website allowing users to create and share photo-montages.
 
 ## Expected result
 - Create a website from scratch, reproduzing the concept of the famous app in a simplified version.  
