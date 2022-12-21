@@ -32,12 +32,12 @@ This project aims to create a small Instagram-like site allowing users to create
 
 Front-End: 
 - HTML
-- TailwindCSS Framework
+- CSS (TailwindCSS)
 - Javascript vanilla
 
 Back-End:
-- NodeJS
-- Express
+- Node.JS
+- Express.JS
 - EJS Template Engine
 
 DataBase:
