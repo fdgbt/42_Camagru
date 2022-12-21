@@ -82,12 +82,12 @@ Open a web browser then go to: http://localhost:3000
 The man can be found in the "backend" folder.  
 
 ## Screenshots
-[cooming soon]  
+[coming soon]  
 More screenshots are availables in the "screens" folder.
 
 ## Notes
 You need to create the "env" variables to start the container.  See an example below:  
-
+[update coming]  
 The database is hosted on the cloud (Mongo Atlas) and its access is protected by IP. Contact me to add your IP to the whitelist.  
 
 ## Keywords
