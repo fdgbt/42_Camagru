@@ -82,8 +82,7 @@ Open a web browser then go to: http://localhost:3000
 The man can be found in the "backend" folder.  
 
 ## Screenshots
-
-
+[cooming soon]  
 More screenshots are availables in the "screens" folder.
 
 ## Notes
