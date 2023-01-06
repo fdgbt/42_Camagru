@@ -113,7 +113,7 @@ SEED_ROOT_PWD=****************
 MAIL_TRANSACTIONAL=*************
 MAIL_TR_PWD=********
 ```
-The database is hosted on the cloud (Mongo Atlas) and its access is protected by IP. Contact me to add your IP to the whitelist.  
+The database is hosted on the cloud (Mongo Atlas) and its access is protected by IP.  
 
 ## Keywords
 User management  
