@@ -92,8 +92,27 @@ The man can be found in the "backend" folder.
 More screenshots are availables in the "screens" folder.
 
 ## Notes
-You need to create the "env" variables to start the container.  See an example below:  
-[update coming]  
+You need to create the "env" variables to start the container.  
+See an example below of the file /backend/env/node.env :  
+```
+PORT=3000
+MODE="DEV"
+URL_DEV=http://localhost:3000
+URL_PROD=https://domain-name.com
+SESSION_KEY=****************
+MONGODB_USER=*******
+MONGODB_PWD=****************
+MONGODB_CLUSTER=************
+MONGODB_NAME=*******
+SEED_ADMIN_MAIL=****@****.com
+SEED_ADMIN_PWD=********
+SEED_MODO_MAIL=****@****.com
+SEED_MODO_PWD=********
+SEED_ROOT_MAIL=****@****.fr
+SEED_ROOT_PWD=****************
+MAIL_TRANSACTIONAL=*************
+MAIL_TR_PWD=********
+```
 The database is hosted on the cloud (Mongo Atlas) and its access is protected by IP. Contact me to add your IP to the whitelist.  
 
 ## Keywords
