@@ -84,10 +84,10 @@ The man can be found in the "backend" folder.
 ## Screenshots
 ![gallery](https://user-images.githubusercontent.com/52746061/211081199-e4db9404-b9e9-4f63-ba4d-5660f98c327a.png)  
 ![gallery_page6](https://user-images.githubusercontent.com/52746061/211081349-d7ca0186-d1ea-43e6-8260-5bc69863028b.png)  
-![comments](https://user-images.githubusercontent.com/52746061/211081691-8ade5a61-2aae-4b26-a4f2-763b89ba5a52.png)
-![editing8](https://user-images.githubusercontent.com/52746061/211081750-85cb9697-17bb-47bd-9e91-3607d7f048c0.png)
-![gallery_mobile](https://user-images.githubusercontent.com/52746061/211082072-33f29353-e7db-45d2-863b-b64d32906951.png)
-![account_mobile](https://user-images.githubusercontent.com/52746061/211081904-bd9a2ab0-48ae-439f-bdf7-86455fd47a0b.png)
+![comments](https://user-images.githubusercontent.com/52746061/211081691-8ade5a61-2aae-4b26-a4f2-763b89ba5a52.png)  
+![editing8](https://user-images.githubusercontent.com/52746061/211081750-85cb9697-17bb-47bd-9e91-3607d7f048c0.png)  
+![gallery_mobile](https://user-images.githubusercontent.com/52746061/211082072-33f29353-e7db-45d2-863b-b64d32906951.png)  
+![account_admin_mobile](https://user-images.githubusercontent.com/52746061/211083397-2daed67b-2847-4bb1-958e-ef0d02affa5f.png)  
 
 More screenshots are availables in the "screens" folder.
 
